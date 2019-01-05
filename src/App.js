@@ -1,28 +1,56 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{Component} from 'react';
+import ChatInput from './ChatInput';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+import ChatZone from './ChatZone';
+import Grid from '@material-ui/core/Grid'
+
+import GenerateChatBubble from './GenerateChatBubble'
+
+
+class App extends Component{
+	constructor(){
+		super();
+		this.state={
+			chatText:[]
+		}
+	}
+
+	getUserInput=(event)=>{
+
+		if(event.charCode === 13){
+
+		let temp = this.state.chatText
+		temp.push(event.target.value);
+		this.setState({chatText:temp});
+		event.target.value='';
+		}
+		
+	}
+	deleteChatItemWhenOverFlow(chatZoneHeight){
+		if(chatZoneHeight>556){
+			let temp = this.state.chatText;
+			temp.shift();
+			this.setState({chatText:temp});
+		}		
+	}
+	componentDidUpdate(){
+		let chatZoneHeight=document.getElementById("ChatZone").clientHeight;
+		this.deleteChatItemWhenOverFlow(chatZoneHeight);
+	}
+	render(){
+		return (
+			<div>
+				
+				<Grid container justify = "center">	
+					<ChatZone>
+						<GenerateChatBubble chatText={this.state.chatText}/>
+					</ChatZone>
+					<ChatInput getUserInput={this.getUserInput}/>
+				</Grid>
+			</div>
+
+			);
+	}
+} 
 
 export default App;
