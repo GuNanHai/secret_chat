@@ -1,17 +1,21 @@
 import React,{Component} from 'react';
 import ChatInput from './ChatInput';
+import * as $ from 'jquery';
 
 import ChatZone from './ChatZone';
 import Grid from '@material-ui/core/Grid'
 
+
 import GenerateChatBubble from './GenerateChatBubble'
 
+let addressTemp = 'local';
 
 class App extends Component{
 	constructor(){
 		super();
 		this.state={
-			chatText:[]
+			chatText:[],
+			scrollBarVisibility:false
 		}
 	}
 
@@ -19,31 +23,46 @@ class App extends Component{
 
 		if(event.charCode === 13){
 
-		let temp = this.state.chatText
-		temp.push(event.target.value);
+		let temp = this.state.chatText;
+		addressTemp==='local'?addressTemp='remote':addressTemp='local';
+		temp.push({
+			message:event.target.value,
+			address:addressTemp          /*未来用于判断消息是否本地发出*/
+		});
 		this.setState({chatText:temp});
 		event.target.value='';
 		}
-		
+
 	}
-	deleteChatItemWhenOverFlow(chatZoneHeight){
-		if(chatZoneHeight>556){
+
+	toggleScrollBar=(event)=>{
+		this.state.scrollBarVisibility?this.setState({scrollBarVisibility:false}):this.setState({scrollBarVisibility:true});
+	}
+
+
+
+	deleteChatItemWhenOverFlow(){
+		if(this.state.chatText.length>50){
 			let temp = this.state.chatText;
 			temp.shift();
 			this.setState({chatText:temp});
 		}		
 	}
 	componentDidUpdate(){
-		let chatZoneHeight=document.getElementById("ChatZone").clientHeight;
-		this.deleteChatItemWhenOverFlow(chatZoneHeight);
+		this.deleteChatItemWhenOverFlow();
+		$('#ChatZone').scrollTop($('#ChatZone')[0].scrollHeight);
+
+		// 使聊天窗口在每次更新后始终处于最底部
+		
 	}
 	render(){
+		const {chatText,scrollBarVisibility,} = this.state
+
 		return (
 			<div>
-				
 				<Grid container justify = "center">	
-					<ChatZone>
-						<GenerateChatBubble chatText={this.state.chatText}/>
+					<ChatZone scrollBarVisibility={scrollBarVisibility} toggleScrollBar={this.toggleScrollBar}>
+						<GenerateChatBubble chatText={chatText} />
 					</ChatZone>
 					<ChatInput getUserInput={this.getUserInput}/>
 				</Grid>

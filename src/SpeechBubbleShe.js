@@ -1,17 +1,23 @@
 import React from 'react';
 import './SpeechBubble.css';
 
-const SpeechBubbleMe = () => {
+const SpeechBubbleShe = ({chatItem,id,elementHeight}) => {
 	return (
-		  <div class="bubble">
-		    <div class="txt">
-		      <p class="name">Benni</p>
-		      <p class="message">Hey, check out this Pure CSS speech bubble...</p>
-		      <span class="timestamp">10:20 pm</span>
+		  <div className="bubble" id={`chatItem${id}`} 
+		  style={{height: elementHeight + 'px'
+		  ,display:'block'
+		  ,justifyContent:'start'
+		  ,marginBottom:'15px'}}>
+		    <div className="txt">
+		      <p className="name">Benni</p>
+		      <p className="message">{chatItem}</p>
+		      <span className="timestamp">10:20 pm</span>
 		    </div>
-		    <div class="bubble-arrow"></div>
+		    <div className="bubble-arrow"></div>
 		  </div>		
 		);
 }
 
-export default SpeechBubbleMe;
+export default SpeechBubbleShe;
+
+
