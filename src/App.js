@@ -1,9 +1,7 @@
 import React,{Component} from 'react';
 import ChatInput from './ChatInput';
 import * as $ from 'jquery';
-import './App.css';
-import Particles from 'react-particles-js';
-import MediaQuery from 'react-responsive';
+
 
 import ChatZone from './ChatZone';
 import Grid from '@material-ui/core/Grid'
@@ -13,28 +11,7 @@ import GenerateChatBubble from './GenerateChatBubble'
 
 let addressTemp = 'local';
 
-const particlesOptionsDesktop = {
-  particles: {
-    number: {
-      value:200,
-      density: {
-        enable:true,
-        value_area: 800
-      }
-    }
-  }
-}
-const particlesOptionsPhone = {
-  particles: {
-    number: {
-      value:60,
-      density: {
-        enable:true,
-        value_area: 800
-      }
-    }
-  }
-}
+
 class App extends Component{
 	constructor(){
 		super();
@@ -84,21 +61,12 @@ class App extends Component{
 		const {chatText,scrollBarVisibility,} = this.state
 
 		return (
-			<div>
-				<MediaQuery query="(min-width: 500px)">
-				<Particles className='particles' params={particlesOptionsDesktop}/>
-				</MediaQuery>
-				<MediaQuery query="(max-width: 500px)">
-				<Particles className='particles' params={particlesOptionsPhone}/>
-				</MediaQuery>
-				<Grid container justify = "center">	
-					<ChatZone scrollBarVisibility={scrollBarVisibility} toggleScrollBar={this.toggleScrollBar}>
-						<GenerateChatBubble chatText={chatText} />
-					</ChatZone>
-					<ChatInput getUserInput={this.getUserInput}/>
-				</Grid>
-			</div>
-
+			<Grid container justify = "center">	
+				<ChatZone scrollBarVisibility={scrollBarVisibility} toggleScrollBar={this.toggleScrollBar}>
+					<GenerateChatBubble chatText={chatText} />
+				</ChatZone>
+				<ChatInput getUserInput={this.getUserInput}/>
+			</Grid>
 			);
 	}
 } 
