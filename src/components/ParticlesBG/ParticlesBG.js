@@ -12,7 +12,8 @@ const particlesOptionsDesktop = {
         enable:true,
         value_area: 800
       }
-    }
+    },
+    color:{value: "#f00"}
   }
 }
 const particlesOptionsPhone = {
@@ -23,7 +24,8 @@ const particlesOptionsPhone = {
         enable:true,
         value_area: 800
       }
-    }
+    },
+    color:{value: "#f00"}
   }
 }
 
