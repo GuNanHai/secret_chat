@@ -28,16 +28,15 @@ class App extends Component{
 
 	getUserInput=(event)=>{
 
-		if(event.charCode === 13){
-
-		let temp = this.state.chatText;
-		addressTemp==='local'?addressTemp='remote':addressTemp='local';
-		temp.push({
-			message:event.target.value,
-			address:addressTemp          /*未来用于判断消息是否本地发出*/
-		});
-		this.setState({chatText:temp});
-		event.target.value='';
+		if(event.charCode === 13 && event.target.value){
+			let temp = this.state.chatText;
+			addressTemp==='local'?addressTemp='remote':addressTemp='local';
+			temp.push({
+				message:event.target.value,
+				address:addressTemp          /*未来用于判断消息是否本地发出*/
+			});
+			this.setState({chatText:temp});
+			event.target.value='';
 		}
 
 	}
