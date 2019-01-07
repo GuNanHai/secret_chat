@@ -1,6 +1,9 @@
 import React,{Component} from 'react';
 import ChatInput from './ChatInput';
 import * as $ from 'jquery';
+import './App.css';
+import Particles from 'react-particles-js';
+
 
 import ChatZone from './ChatZone';
 import Grid from '@material-ui/core/Grid'
@@ -9,6 +12,18 @@ import Grid from '@material-ui/core/Grid'
 import GenerateChatBubble from './GenerateChatBubble'
 
 let addressTemp = 'local';
+
+const particlesOptions = {
+  particles: {
+    number: {
+      value:200,
+      density: {
+        enable:true,
+        value_area: 800
+      }
+    }
+  }
+}
 
 class App extends Component{
 	constructor(){
@@ -60,6 +75,7 @@ class App extends Component{
 
 		return (
 			<div>
+				<Particles className='particles' params={particlesOptions}/>
 				<Grid container justify = "center">	
 					<ChatZone scrollBarVisibility={scrollBarVisibility} toggleScrollBar={this.toggleScrollBar}>
 						<GenerateChatBubble chatText={chatText} />
