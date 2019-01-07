@@ -8,9 +8,7 @@
 	overflow-y: scroll;
 	overflow-x: hidden;
 
-	display:grid;
-	grid-template-colums:100%;
-	grid-template-rows:repeat(30,auto);
+
 }
 
 .scrollBarHide::-webkit-scrollbar
