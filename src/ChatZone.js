@@ -5,10 +5,11 @@ const ChatZone = (props) => {
 
 	return (
 
-				<div className={props.scrollBarVisibility?`scrollBarV`:`scrollBarHide`}
+				<div className={props.isChatZoneMouseEnter?`scrollBarV`:`scrollBarHide`}
 				 id="ChatZone" 
-				 onMouseEnter={props.toggleScrollBar} 
-				 onMouseLeave={props.toggleScrollBar} >
+				 onMouseEnter={props.toggleMouseEnterJudge} 
+				 onMouseLeave={props.toggleMouseEnterJudge} 
+				 onTouchMove={props.toggleTouchMoveJudge} >
 					{props.children}
 				</div>
 

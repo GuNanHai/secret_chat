@@ -10,15 +10,20 @@ import Grid from '@material-ui/core/Grid'
 import GenerateChatBubble from './GenerateChatBubble'
 
 let addressTemp = 'local';
-
+let delayOffChatZoneTouched;
 
 class App extends Component{
 	constructor(){
 		super();
 		this.state={
 			chatText:[],
-			scrollBarVisibility:false
+			isChatZoneMouseEnter:false,
+			isChatZoneTouched:false
 		}
+	}
+	componentDidUpdate(){
+		this.deleteChatItemWhenOverFlow();
+		this.chatZoneBarToBottom();
 	}
 
 	getUserInput=(event)=>{
@@ -36,12 +41,24 @@ class App extends Component{
 		}
 
 	}
-
-	toggleScrollBar=(event)=>{
-		this.state.scrollBarVisibility?this.setState({scrollBarVisibility:false}):this.setState({scrollBarVisibility:true});
+	// 聊天窗口是否活动的相关Function================================
+	toggleMouseEnterJudge=(event)=>{
+		this.state.isChatZoneMouseEnter?this.setState({isChatZoneMouseEnter:false}):this.setState({isChatZoneMouseEnter:true});
 	}
-
-
+	toggleTouchMoveJudge=(event)=>{
+		if(delayOffChatZoneTouched){
+			clearTimeout(delayOffChatZoneTouched);
+		}
+		this.setState({isChatZoneTouched:true});
+		delayOffChatZoneTouched = setTimeout(()=>this.setState({isChatZoneTouched:false}),10000);
+	}
+	// 使聊天窗口在每次更新后始终处于最底部，当鼠标进入chatZone时不会执行此功能,手机环境时当手指滑动聊天区域后停止执行此功能，若手指不再滑动10秒后重启此功能。
+	chatZoneBarToBottom = () => {
+		if(!this.state.isChatZoneMouseEnter && !this.state.isChatZoneTouched){
+			$('#ChatZone').scrollTop($('#ChatZone')[0].scrollHeight);
+		}
+	}
+	//======================================================
 
 	deleteChatItemWhenOverFlow(){
 		if(this.state.chatText.length>50){
@@ -50,19 +67,17 @@ class App extends Component{
 			this.setState({chatText:temp});
 		}		
 	}
-	componentDidUpdate(){
-		this.deleteChatItemWhenOverFlow();
-		$('#ChatZone').scrollTop($('#ChatZone')[0].scrollHeight);
 
-		// 使聊天窗口在每次更新后始终处于最底部
-		
-	}
+
+
 	render(){
-		const {chatText,scrollBarVisibility,} = this.state
+		const {chatText,isChatZoneMouseEnter,} = this.state
 
 		return (
 			<Grid container justify = "center">	
-				<ChatZone scrollBarVisibility={scrollBarVisibility} toggleScrollBar={this.toggleScrollBar}>
+				<ChatZone isChatZoneMouseEnter={isChatZoneMouseEnter}
+				 toggleMouseEnterJudge={this.toggleMouseEnterJudge} 
+				 toggleTouchMoveJudge={this.toggleTouchMoveJudge}>
 					<GenerateChatBubble chatText={chatText} />
 				</ChatZone>
 				<ChatInput getUserInput={this.getUserInput}/>
