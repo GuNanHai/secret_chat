@@ -3,7 +3,7 @@ import ChatInput from './ChatInput';
 import * as $ from 'jquery';
 import './App.css';
 import Particles from 'react-particles-js';
-
+import MediaQuery from 'react-responsive';
 
 import ChatZone from './ChatZone';
 import Grid from '@material-ui/core/Grid'
@@ -13,7 +13,7 @@ import GenerateChatBubble from './GenerateChatBubble'
 
 let addressTemp = 'local';
 
-const particlesOptions = {
+const particlesOptionsDesktop = {
   particles: {
     number: {
       value:200,
@@ -24,7 +24,17 @@ const particlesOptions = {
     }
   }
 }
-
+const particlesOptionsPhone = {
+  particles: {
+    number: {
+      value:100,
+      density: {
+        enable:true,
+        value_area: 800
+      }
+    }
+  }
+}
 class App extends Component{
 	constructor(){
 		super();
@@ -75,7 +85,12 @@ class App extends Component{
 
 		return (
 			<div>
-				<Particles className='particles' params={particlesOptions}/>
+				<MediaQuery query="(min-width: 500px)">
+				<Particles className='particles' params={particlesOptionsDesktop}/>
+				</MediaQuery>
+				<MediaQuery query="(max-width: 500px)">
+				<Particles className='particles' params={particlesOptionsPhone}/>
+				</MediaQuery>
 				<Grid container justify = "center">	
 					<ChatZone scrollBarVisibility={scrollBarVisibility} toggleScrollBar={this.toggleScrollBar}>
 						<GenerateChatBubble chatText={chatText} />
