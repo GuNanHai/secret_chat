@@ -1,16 +1,23 @@
 
 
 
+#input-phone{
+	display: block;
+	padding: 0.5em 0.25em;
+	border: none;
+	border-radius: 0.2em;
+	font-size: 1.5em;
+	box-shadow: 0 0 1em 0.25em rgba(0,0,0,0.2);
+	
+	position: fixed;
+	top:75vh;
+}
+
+@media only screen and (max-width:400px) {
 	#input-phone{
-		display: block;
-		padding: 0.5em 0.25em;
-		border: none;
-		border-radius: 0.2em;
-		font-size: 1.5em;
-		box-shadow: 0 0 1em 0.25em rgba(0,0,0,0.2);
-		
-		position: fixed;
-		top:75vh;
+		width:70vw;
 	}
+
+}
 
 

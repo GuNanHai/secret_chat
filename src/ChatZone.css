@@ -1,6 +1,6 @@
-.scrollBarHide {
+.scrollBarHide,.scrollBarV {
 	width: 600px;
-	height: 520px;
+	height: 65vh;
 	
 	position: relative;
 	margin: auto;
@@ -13,12 +13,14 @@
 	grid-template-rows:repeat(30,auto);
 }
 
-.scrollBarHide::-webkit-scrollbar {
+.scrollBarHide::-webkit-scrollbar
+,.scrollBarV::-webkit-scrollbar {
   width: 5px;
 }
 
 
-.scrollBarHide::-webkit-scrollbar-track {
+.scrollBarHide::-webkit-scrollbar-track
+,.scrollBarV::-webkit-scrollbar-track {
 	opacity:0;
 }
 
@@ -30,38 +32,20 @@
 
 
 
-.scrollBarHide::-webkit-scrollbar-track-piece{
+.scrollBarHide::-webkit-scrollbar-track-piece
+,.scrollBarV::-webkit-scrollbar-track-piece {
 	opacity:0;
 }
 
-.scrollBarHide::-webkit-scrollbar-corner{
+.scrollBarHide::-webkit-scrollbar-corner
+,.scrollBarV::-webkit-scrollbar-corner{
 	opacity: 0;
 }
 
 
-.scrollBarV {
-	width: 600px;
-	height: 520px;
-	
-	position: relative;
-	margin: auto;
-	padding:10px;
-	overflow-y: scroll;
-	overflow-x: hidden;
-
-	display:grid;
-	grid-template-colums:100%;
-	grid-template-rows:repeat(30,auto);
-}
-
-.scrollBarV::-webkit-scrollbar {
-  width: 5px;
-}
 
 
-.scrollBarV::-webkit-scrollbar-track {
-	opacity:0;
-}
+
 
 .scrollBarV::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -71,12 +55,6 @@
 
 
 
-.scrollBarV::-webkit-scrollbar-track-piece{
-	opacity:0;
-}
 
-.scrollBarV::-webkit-scrollbar-corner{
-	opacity: 0;
-}
 
 
