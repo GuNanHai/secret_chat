@@ -4,10 +4,7 @@ import './SpeechBubble.css';
 const SpeechBubbleShe = ({chatItem,id,elementHeight}) => {
 	return (
 		  <div className="bubble" id={`chatItem${id}`} 
-		  style={{height: elementHeight + 'px'
-		  ,display:'block'
-		  ,justifyContent:'start'
-		  ,marginBottom:'15px'}}>
+		  style={{height: elementHeight + 'px'}}>
 		    <div className="txt">
 		      <p className="name">Benni</p>
 		      <p className="message">{chatItem}</p>

@@ -8,14 +8,21 @@
 	border-radius: 0.2em;
 	font-size: 1.5em;
 	box-shadow: 0 0 1em 0.25em rgba(0,0,0,0.2);
-	
-	position: fixed;
-	top:75vh;
+	width:250px;
+	justify-self: center;
+	margin-top:20px;
+
 }
 
 @media only screen and (max-width:400px) {
 	#input-phone{
 		width:70vw;
+		position:fixed;
+		top:30vh;
+		left:13.5vw;
+		background:rgba(255, 204, 230,0.5);
+
+
 	}
 
 }

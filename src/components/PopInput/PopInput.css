@@ -1,0 +1,20 @@
+
+.boy-logo {
+  animation: boy-logo-spin infinite 2s linear;
+  width: 150vmin;
+  position:fixed;
+  top:20vh;
+  left:12vw;
+}
+
+@keyframes boy-logo-spin {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+  	transform: scale(1);
+  }
+}

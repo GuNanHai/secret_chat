@@ -1,13 +1,17 @@
 import React,{Component} from 'react';
-import ChatInput from './ChatInput';
 import * as $ from 'jquery';
+import MediaQuery from 'react-responsive';
 
-
-import ChatZone from './ChatZone';
-import Grid from '@material-ui/core/Grid'
 
 
 import GenerateChatBubble from './GenerateChatBubble'
+import ChatInput from './ChatInput';
+import ChatZone from './ChatZone';
+import PopInput from './components/PopInput/PopInput';
+import './App.css';
+
+
+
 
 let addressTemp = 'local';
 let delayOffChatZoneTouched;
@@ -18,7 +22,8 @@ class App extends Component{
 		this.state={
 			chatText:[],
 			isChatZoneMouseEnter:false,
-			isChatZoneTouched:false
+			isChatZoneTouched:false,
+			hasPopInput:false
 		}
 	}
 	componentDidUpdate(){
@@ -37,6 +42,7 @@ class App extends Component{
 			});
 			this.setState({chatText:temp});
 			event.target.value='';
+			this.setState({isChatZoneTouched:false})
 		}
 
 	}
@@ -51,8 +57,10 @@ class App extends Component{
 		this.setState({isChatZoneTouched:true});
 		delayOffChatZoneTouched = setTimeout(()=>this.setState({isChatZoneTouched:false}),10000);
 	}
+
 	// 使聊天窗口在每次更新后始终处于最底部，当鼠标进入chatZone时不会执行此功能,手机环境时当手指滑动聊天区域后停止执行此功能，若手指不再滑动10秒后重启此功能。
 	chatZoneBarToBottom = () => {
+
 		if(!this.state.isChatZoneMouseEnter && !this.state.isChatZoneTouched){
 			$('#ChatZone').scrollTop($('#ChatZone')[0].scrollHeight);
 		}
@@ -67,20 +75,39 @@ class App extends Component{
 		}		
 	}
 
+	togglePopInput=(event)=>{
+		this.setState({hasPopInput:true});
+	}
+	dismissInput=(event)=>{
+		if(this.state.hasPopInput){
+			this.setState({hasPopInput:false});
+		}
+	}
 
 
 	render(){
 		const {chatText,isChatZoneMouseEnter,} = this.state
 
 		return (
-			<Grid container justify = "center">	
-				<ChatZone isChatZoneMouseEnter={isChatZoneMouseEnter}
-				 toggleMouseEnterJudge={this.toggleMouseEnterJudge} 
-				 toggleTouchMoveJudge={this.toggleTouchMoveJudge}>
-					<GenerateChatBubble chatText={chatText} />
-				</ChatZone>
-				<ChatInput getUserInput={this.getUserInput}/>
-			</Grid>
+			<div>
+				<div className='chatWindow' onClick={this.dismissInput}>	
+					<ChatZone isChatZoneMouseEnter={isChatZoneMouseEnter}
+					 toggleMouseEnterJudge={this.toggleMouseEnterJudge} 
+					 toggleTouchMoveJudge={this.toggleTouchMoveJudge}>
+						<GenerateChatBubble chatText={chatText} />
+					</ChatZone>
+					
+					<MediaQuery query="(min-width: 600px)">
+						<ChatInput getUserInput={this.getUserInput} />
+					</MediaQuery>
+				</div>
+				<MediaQuery query="(max-width: 600px)">
+	      			<PopInput togglePopInput={this.togglePopInput} 
+	      			hasPopInput={this.state.hasPopInput} 
+	      			getUserInput={this.getUserInput} />
+				</MediaQuery>				
+			</div>
+
 			);
 	}
 } 

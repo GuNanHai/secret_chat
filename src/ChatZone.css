@@ -1,15 +1,20 @@
 .scrollBarHide,.scrollBarV {
+	height: 80vh;
 	width: 600px;
-	height: 65vh;
-	
-	position: relative;
-	margin: auto;
-	padding:10px;
 	overflow-y: scroll;
 	overflow-x: hidden;
 
-
 }
+
+@media only screen and (max-width:400px) {
+	.scrollBarHide,.scrollBarV{
+		width:100vw;
+		height: 90vh;
+	}
+}
+
+
+
 
 .scrollBarHide::-webkit-scrollbar
 ,.scrollBarV::-webkit-scrollbar {
@@ -41,16 +46,11 @@
 }
 
 
-
-
-
-
 .scrollBarV::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background: rgba(0, 0, 0,0.2); 
 
 }
-
 
 
 
