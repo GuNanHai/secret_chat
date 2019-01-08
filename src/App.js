@@ -97,11 +97,11 @@ class App extends Component{
 						<GenerateChatBubble chatText={chatText} />
 					</ChatZone>
 					
-					<MediaQuery query="(min-width: 600px)">
+					<MediaQuery query="(min-width: 500px)">
 						<ChatInput getUserInput={this.getUserInput} />
 					</MediaQuery>
 				</div>
-				<MediaQuery query="(max-width: 600px)">
+				<MediaQuery query="(max-width: 500px)">
 	      			<PopInput togglePopInput={this.togglePopInput} 
 	      			hasPopInput={this.state.hasPopInput} 
 	      			getUserInput={this.getUserInput} />
