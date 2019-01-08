@@ -4,7 +4,11 @@ import './ChatInput.css';
 const ChatInput = ({getUserInput}) => {
 	return (
 
-			<input id="input-phone" type='text'  ng-model="phoneVal" onKeyPress={getUserInput}/>
+			<input id="input-phone" 
+			type='text'  
+			ng-model="phoneVal" 
+			onKeyPress={getUserInput} 
+			autoComplete='off'/>
 
 		);
 }
