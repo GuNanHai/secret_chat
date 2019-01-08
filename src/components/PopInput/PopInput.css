@@ -2,9 +2,14 @@
 .boy-logo {
   animation: boy-logo-spin infinite 2s linear;
   width: 150vmin;
+  display: block;
   position:fixed;
-  top:20vh;
-  left:12vw;
+  top:25vh;
+  left:10vw;
+  
+  margin-right: auto;
+  margin-left: auto;
+  
 }
 
 @keyframes boy-logo-spin {

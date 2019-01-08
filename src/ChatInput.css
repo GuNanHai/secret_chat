@@ -14,12 +14,15 @@
 
 }
 
-@media only screen and (max-width:400px) {
+@media only screen and (max-width:500px) {
 	#input-phone{
 		width:70vw;
 		position:fixed;
-		top:30vh;
-		left:13.5vw;
+		top:35vh;
+		right: 0;
+    	left: 0;
+    	margin-right: auto;
+    	margin-left: auto;
 		background:rgba(255, 204, 230,0.5);
 
 
