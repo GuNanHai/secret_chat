@@ -16,15 +16,38 @@ const particlesOptionsDesktop = {
   }
 }
 const particlesOptionsPhone = {
-  particles: {
-    number: {
-      value:60,
-      density: {
-        enable:true,
-        value_area: 800
+      "particles": {
+          "number": {
+              "value": 20,
+              "density": {
+                  "enable": false
+              }
+          },
+          "size": {
+              "value": 10,
+              "random": true
+          },
+          "move": {
+              "direction": "bottom",
+              "out_mode": "out"
+          },
+          "line_linked": {
+              "enable": false
+          }
+      },
+      "interactivity": {
+          "events": {
+              "onclick": {
+                  "enable": true,
+                  "mode": "remove"
+              }
+          },
+          "modes": {
+              "remove": {
+                  "particles_nb": 10
+              }
+          }
       }
-    }
-  }
 }
 
 const ParticlesBG = () => {

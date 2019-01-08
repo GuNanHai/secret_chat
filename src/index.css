@@ -6,10 +6,21 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  background:-webkit-linear-gradient(90deg, #26D0CE, #1A2980);
+  background:-o-linear-gradient(90deg, #26D0CE, #1A2980);
+  background:linear-gradient(90deg,#26D0CE, #1A2980);
+  background-color: rgba(102, 194, 255,0.7)
 
-  background:-webkit-linear-gradient(left, #26D0CE, #1A2980);
-  background:-o-linear-gradient(left, #26D0CE, #1A2980);
-  background:linear-gradient(to right, #26D0CE, #1A2980);
+}
+
+@media screen and (max-width: 500px){
+  body{
+  background:-webkit-linear-gradient(left, rgb(169, 3, 41) 0%, rgb(143, 2, 34) 44%, rgb(109, 0, 25) 100%);
+  background:-o-linear-gradient(left, rgb(169, 3, 41) 0%, rgb(143, 2, 34) 44%, rgb(109, 0, 25) 100%);
+  background:linear-gradient(to right, rgb(169, 3, 41) 0%, rgb(143, 2, 34) 44%, rgb(109, 0, 25) 100%);
+  background: rgb(143, 2, 34);  
+  }
 }
 
 code {
