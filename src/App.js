@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import * as $ from 'jquery';
 import MediaQuery from 'react-responsive';
-
+import axios from 'axios'
 
 
 import GenerateChatBubble from './GenerateChatBubble'
@@ -10,10 +10,12 @@ import ChatZone from './ChatZone';
 import PopInput from './components/PopInput/PopInput';
 import './App.css';
 
+let date = new Date();
 
 
+const Url='http://45.32.227.181:5000/chatText';
+const Url2='http://45.32.227.181:5000/getText';
 
-let addressTemp = 'local';
 let delayOffChatZoneTouched;
 
 class App extends Component{
@@ -23,29 +25,88 @@ class App extends Component{
 			chatText:[],
 			isChatZoneMouseEnter:false,
 			isChatZoneTouched:false,
-			hasPopInput:false
+			hasPopInput:false,
+			isStartSendingMessage:false
 		}
 	}
+	componentDidMount(){
+		this.interval = setInterval(()=>{
+			if(!this.state.isStartSendingMessage){
+				let localText = this.state.chatText;
+				let data = {
+					localText:localText
+				}
+				axios({
+					method: 'post',
+					url: Url2,
+					data:{
+						data
+					}
+				})
+				.then(response=>{
+					response.data.map(each=>{
+							localText.push({
+							textID:each.textID,
+							message:each.text,
+							address:each.address,
+							ipAddress:each.ipAddress,
+							datetime:each.datetime
+						})
+						return undefined;
+					})
+							this.setState({chatText:localText});
+
+					})
+				.catch(err=>console.log(err));
+			}
+
+		}, 1000);
+	}
 	componentDidUpdate(){
-		this.deleteChatItemWhenOverFlow();
 		this.chatZoneBarToBottom();
 	}
 
 	getUserInput=(event)=>{
 
 		if(event.charCode === 13 && event.target.value){
+			this.setState({isStartSendingMessage:true});
+			let datetime = `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日 ${date.getHours()}:${date.getMinutes()>9?date.getMinutes():'0'+date.getMinutes()}`
 			let temp = this.state.chatText;
-			addressTemp==='local'?addressTemp='remote':addressTemp='local';
-			temp.push({
-				message:event.target.value,
-				address:addressTemp          /*未来用于判断消息是否本地发出*/
-			});
-			this.setState({chatText:temp});
+			let chatText = {
+				text:event.target.value,
+				datetime:datetime
+			}
+			axios({
+				method: 'post',
+				url: Url,
+				data:{
+					chatText
+				}
+			})
+			.then(response=>{
+					temp.push({
+					textID:response.data.textID,
+					message:response.data.text,
+					address:response.data.address,
+					ipAddress:response.data.ipAddress,
+					datetime:response.data.datetime
+				})
+					this.setState({chatText:temp});
+					
+
+
+			})
+			.catch(err=>console.log(err))
+
+
+
+			
 			event.target.value='';
 			this.setState({isChatZoneTouched:false})
+			setTimeout(()=>this.setState({isStartSendingMessage:false}),500);
 		}
-
 	}
+
 	// 聊天窗口是否活动的相关Function================================
 	toggleMouseEnterJudge=(event)=>{
 		this.state.isChatZoneMouseEnter?this.setState({isChatZoneMouseEnter:false}):this.setState({isChatZoneMouseEnter:true});
@@ -67,13 +128,13 @@ class App extends Component{
 	}
 	//======================================================
 
-	deleteChatItemWhenOverFlow(){
-		if(this.state.chatText.length>50){
-			let temp = this.state.chatText;
-			temp.shift();
-			this.setState({chatText:temp});
-		}		
-	}
+	// deleteChatItemWhenOverFlow(){
+	// 	if(this.state.chatText.length>50){
+	// 		let temp = this.state.chatText;
+	// 		temp.shift();
+	// 		this.setState({chatText:temp});
+	// 	}		
+	// }
 
 	togglePopInput=(event)=>{
 		this.setState({hasPopInput:true});
@@ -86,7 +147,7 @@ class App extends Component{
 
 
 	render(){
-		const {chatText,isChatZoneMouseEnter,} = this.state
+		const {chatText,isChatZoneMouseEnter,} = this.state;
 
 		return (
 			<div>
