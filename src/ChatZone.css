@@ -9,7 +9,8 @@
 @media only screen and (max-width:400px) {
 	.scrollBarHide,.scrollBarV{
 		width:100vw;
-		height: 90vh;
+		height: 600px;
+		margin-top:0px;
 	}
 }
 

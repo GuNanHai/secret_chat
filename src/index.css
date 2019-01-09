@@ -18,7 +18,7 @@ body {
   background:-webkit-linear-gradient(left, rgb(169, 3, 41) 0%, rgb(143, 2, 34) 44%, rgb(109, 0, 25) 100%);
   background:-o-linear-gradient(left, rgb(169, 3, 41) 0%, rgb(143, 2, 34) 44%, rgb(109, 0, 25) 100%);
   background:linear-gradient(to right, rgb(169, 3, 41) 0%, rgb(143, 2, 34) 44%, rgb(109, 0, 25) 100%);
-  background: rgb(143, 2, 34);  
+  background: rgba(255, 153, 204,0.7);  
   }
 }
 

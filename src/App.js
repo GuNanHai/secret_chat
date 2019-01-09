@@ -10,7 +10,7 @@ import ChatZone from './ChatZone';
 import PopInput from './components/PopInput/PopInput';
 import './App.css';
 
-let date = new Date();
+
 
 
 const Url='http://45.32.227.181:5000/chatText';
@@ -59,6 +59,7 @@ class App extends Component{
 					})
 				.catch(err=>console.log(err));
 			}
+			this.chatZoneBarToBottom();
 
 		}, 1000);
 	}
@@ -66,10 +67,13 @@ class App extends Component{
 		this.chatZoneBarToBottom();
 	}
 
+
+
 	getUserInput=(event)=>{
 
 		if(event.charCode === 13 && event.target.value){
 			this.setState({isStartSendingMessage:true});
+			let date = new Date();
 			let datetime = `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日 ${date.getHours()}:${date.getMinutes()>9?date.getMinutes():'0'+date.getMinutes()}`
 			let temp = this.state.chatText;
 			let chatText = {
@@ -116,7 +120,7 @@ class App extends Component{
 			clearTimeout(delayOffChatZoneTouched);
 		}
 		this.setState({isChatZoneTouched:true});
-		delayOffChatZoneTouched = setTimeout(()=>this.setState({isChatZoneTouched:false}),10000);
+		delayOffChatZoneTouched = setTimeout(()=>this.setState({isChatZoneTouched:false}),5000);
 	}
 
 	// 使聊天窗口在每次更新后始终处于最底部，当鼠标进入chatZone时不会执行此功能,手机环境时当手指滑动聊天区域后停止执行此功能，若手指不再滑动10秒后重启此功能。
