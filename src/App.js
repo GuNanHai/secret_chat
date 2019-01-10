@@ -22,7 +22,7 @@ class App extends Component{
 	constructor(){
 		super();
 		this.state={
-			chatText:[],
+			chatText:[],	//用于存储本地消息条目
 			isChatZoneMouseEnter:false,
 			isChatZoneTouched:false,
 			hasPopInput:false,
@@ -30,9 +30,10 @@ class App extends Component{
 		}
 	}
 	componentDidMount(){
+		//================================用setInterval()设定每隔一秒钟向服务器发送一次请求更新消息的request(附带本地消息存储状态chatText，用于判断更新客户端没有的新消息。)
 		this.interval = setInterval(()=>{
-			if(!this.state.isStartSendingMessage){
-				let localText = this.state.chatText;
+			if(!this.state.isStartSendingMessage){ //用isStartSendingMessage判断来避免‘请求更新’动作在没有装载‘发送动作’的内容时就紧跟着这个发送动作发出，导致服务器回复了相同内容两遍（异常的一遍是服务器以为本地缺失这条消息）。
+				let localText = this.state.chatText;//然而还是无法完全避免‘请求更新’与‘发送消息’产生的冲突。
 				let data = {
 					localText:localText
 				}
@@ -55,24 +56,24 @@ class App extends Component{
 						return undefined;
 					})
 							this.setState({chatText:localText});
-
 					})
 				.catch(err=>console.log(err));
 			}
 			this.chatZoneBarToBottom();
-
 		}, 1000);
 	}
 	componentDidUpdate(){
 		this.chatZoneBarToBottom();
+		this.deleteChatItemWhenOverFlow();
 	}
+	// ==================================================================================================
 
 
-
+// 每当用户按下回车发送消息时，消息将先送到服务器端登记后再被送回来，以'local'的形式出现再屏幕上
 	getUserInput=(event)=>{
 
 		if(event.charCode === 13 && event.target.value){
-			this.setState({isStartSendingMessage:true});
+			this.setState({isStartSendingMessage:true}); //判断用户处于发送消息状态，此时禁止接受消息。
 			let date = new Date();
 			let datetime = `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日 ${date.getHours()}:${date.getMinutes()>9?date.getMinutes():'0'+date.getMinutes()}`
 			let temp = this.state.chatText;
@@ -96,9 +97,7 @@ class App extends Component{
 					datetime:response.data.datetime
 				})
 					this.setState({chatText:temp});
-					
-
-
+					this.setState({isStartSendingMessage:false}) //判断用户离开发送消息状态，此时重启接受消息。
 			})
 			.catch(err=>console.log(err))
 
@@ -107,7 +106,6 @@ class App extends Component{
 			
 			event.target.value='';
 			this.setState({isChatZoneTouched:false})
-			setTimeout(()=>this.setState({isStartSendingMessage:false}),500);
 		}
 	}
 
@@ -130,16 +128,16 @@ class App extends Component{
 			$('#ChatZone').scrollTop($('#ChatZone')[0].scrollHeight);
 		}
 	}
-	//======================================================
+	//=======限制本地消息条数不超出150条===============================
 
-	// deleteChatItemWhenOverFlow(){
-	// 	if(this.state.chatText.length>50){
-	// 		let temp = this.state.chatText;
-	// 		temp.shift();
-	// 		this.setState({chatText:temp});
-	// 	}		
-	// }
-
+	deleteChatItemWhenOverFlow(){
+		if(this.state.chatText.length>150){
+			let temp = this.state.chatText;
+			temp.shift();
+			this.setState({chatText:temp});
+		}		
+	}
+// ============弹出形式的输入框的开关动作
 	togglePopInput=(event)=>{
 		this.setState({hasPopInput:true});
 	}
