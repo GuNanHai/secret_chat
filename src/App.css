@@ -1,5 +1,9 @@
+
+
 .chatWindow {
 	display:grid;
 	justify-content: center;
 	position:relative;
+	
+
 }
