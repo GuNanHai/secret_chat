@@ -1,0 +1,84 @@
+.EmojiSummon {
+	width:50px;
+	display:block;
+	position:relative;
+	margin-left:7px;
+	z-index:2;
+	cursor: pointer;
+}
+
+
+.emojiList {
+	list-style: none;
+	display: grid;
+	grid-template-columns: auto auto auto auto auto auto auto;
+	grid-gap: 3px;
+	font-size: 19px;
+	margin:0 ;
+	padding:0;
+	border: 1px solid rgba(255,255,255,0.7);
+	position:absolute;
+	top:-90px;
+	left:-70px;
+	z-index: 2;
+}
+
+.emojiList li {
+	cursor: pointer;
+}
+
+.dismissBGforEmoji {
+	display: block;
+	width:100vw;
+	height: 100vh;
+	background: rgba(255,255,255,0);
+	position:fixed;
+	z-index:1;
+	top:0;
+	left:0;
+	cursor:auto;
+}
+
+@media only screen and (max-width:500px){
+	.EmojiSummon {
+		width:40px;
+		display:block;
+		position:fixed;
+		top:32vh;
+		left:0;
+		right:0;
+		margin-left:auto;
+		margin-right:auto;
+		z-index:2;
+		cursor: pointer;
+	}
+
+
+	  .emojiAnimated {
+	    -webkit-animation-duration: 1s;
+	    animation-duration: 1s;
+	    -webkit-animation-fill-mode: both;
+	    animation-fill-mode: both;
+	  }
+
+	  .emojiRollIn {
+	    -webkit-animation-name: emojiRollIn;
+	    animation-name: emojiRollIn;
+	  }
+
+
+
+	  @keyframes emojiRollIn {
+	    0% {
+	      top:-10vh;
+	      transform: scale(0);
+	    }
+
+	    100% {
+	      top:34vh;
+	      transform: scale(1);
+	    }
+	  }
+
+
+}

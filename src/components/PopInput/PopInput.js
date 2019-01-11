@@ -3,6 +3,7 @@ import React from 'react';
 import './PopInput.css'
 import boy from './boy.svg';
 import ChatInput from '../../ChatInput';
+import EmojiSummonButton from '../EmojiSummonButton/EmojiSummonButton';
 
 
 class PopInput extends React.Component{
@@ -36,6 +37,7 @@ class PopInput extends React.Component{
 						<ChatInput getUserInput={this.props.getUserInput}/>
 						<div className="frameForOnClickEvent" 
 							 onClick={this.dismissInput}></div>
+						<EmojiSummonButton />
 					</div>
 				);
 		}else{

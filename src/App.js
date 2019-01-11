@@ -9,6 +9,7 @@ import ChatInput from './ChatInput';
 import ChatZone from './ChatZone';
 import PopInput from './components/PopInput/PopInput';
 import './App.css';
+import EmojiSummonButton from './components/EmojiSummonButton/EmojiSummonButton';
 
 
 
@@ -146,6 +147,7 @@ class App extends Component{
 
 
 
+
 	render(){
 		const {chatText,isChatZoneMouseEnter,} = this.state;
 		return (
@@ -159,7 +161,10 @@ class App extends Component{
 					</ChatZone>
 					
 					<MediaQuery query="(min-width: 500px)">
-						<ChatInput getUserInput={this.getUserInput} />
+						<div className='inputPlusEmoji'>
+							<ChatInput getUserInput={this.getUserInput} />
+							<EmojiSummonButton />							
+						</div>
 					</MediaQuery>
 				</div>
 				<MediaQuery query="(max-width: 500px)">
