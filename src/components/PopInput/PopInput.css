@@ -12,6 +12,82 @@
   
 }
 
+.popInfo {
+  position:relative;
+}
+
+@media screen and (max-width: 325px){
+.popInfo:before {
+  position:absolute;
+  top:-580px;
+  left:-15px;
+  transform: scale(0);
+  animation-name: popinfo;
+  animation-duration:6s;
+  animation-delay: 3s;
+  content:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='267px' height='130px' viewBox='8 88 402 196' preserveAspectRatio='xMidYMid meet' %3E%3Crect id='svgEditorBackground' x='0' y='0' width='1070' height='620' style='fill:none; stroke: none;'/%3E%3Cdefs id='svgEditorDefs'%3E%3Cpath id='svgEditorClosePathDefs' style='stroke:black;stroke-width:1px;fill:khaki;'/%3E%3C/defs%3E%3Cellipse id='e10_ellipse' cx='215' cy='185' style='fill:%23ff99cc;stroke:%23ff99cc;stroke-width:1px;' rx='187' ry='83'/%3E%3Cpolygon style='fill:%23ff99cc; stroke-width: 1px;stroke:%23FF99CC;' id='e11_polygon' points='311 247 406 280 358 234'/%3E%3Ctext style='fill:yellow;font-family:Arial;font-size:32px;' x='38' y='194' id='e12_texte'%3E点击我会唤出输入框哦！%3C/text%3E%3C/svg%3E");
+}
+
+  @keyframes popinfo {
+    0% {
+      top:-495px;
+      left:130px;
+      transform: scale(0);
+    }
+    20% {
+      top:-580px;
+      left:-15px;
+      transform: scale(1); 
+    }
+    80% {
+      top:-580px;
+      left:-15px;
+      transform: scale(1);
+    }
+    100% {
+      top:-495px;
+      left:130px;
+      transform: scale(0);
+    }
+  }
+}
+@media screen and (min-width: 325px){
+  .popInfo:before {
+    position:absolute;
+    top:-470px;
+    left:180px;
+    transform: scale(0);
+    animation-name: popinfo;
+    animation-duration:6s;
+    animation-delay: 3s;
+    content:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='267px' height='130px' viewBox='8 88 402 196' preserveAspectRatio='xMidYMid meet' %3E%3Crect id='svgEditorBackground' x='0' y='0' width='1070' height='620' style='fill:none; stroke: none;'/%3E%3Cdefs id='svgEditorDefs'%3E%3Cpath id='svgEditorClosePathDefs' style='stroke:black;stroke-width:1px;fill:khaki;'/%3E%3C/defs%3E%3Cellipse id='e10_ellipse' cx='215' cy='185' style='fill:%23ff99cc;stroke:%23ff99cc;stroke-width:1px;' rx='187' ry='83'/%3E%3Cpolygon style='fill:%23ff99cc; stroke-width: 1px;stroke:%23FF99CC;' id='e11_polygon' points='311 247 406 280 358 234'/%3E%3Ctext style='fill:yellow;font-family:Arial;font-size:32px;' x='38' y='194' id='e12_texte'%3E点击我会唤出输入框哦！%3C/text%3E%3C/svg%3E");
+  }
+
+  @keyframes popinfo {
+    0% {
+    top:-470px;
+    left:180px;
+    transform: scale(0);
+    }
+    20% {
+      transform: scale(1);
+      top:-550px;
+      left:30px;    
+    }
+    80% {
+      transform: scale(1);
+      top:-550px;
+      left:30px; 
+    }
+    100% {
+    top:-470px;
+    left:180px;
+    transform: scale(0);
+    }
+  }
+}
+
+
 @keyframes boy-logo-spin {
   0% {
     transform: scale(1);
