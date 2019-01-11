@@ -4,16 +4,14 @@
 #input-phone{
 	display: block;
 	padding: 0.5em 0.25em;
-	/*border: none;*/
-	/*border-radius: 0.2em;*/
+
 	font-size: 1.5em;
 	box-shadow: 0 0 0.5em 0.15em rgba(0,0,0,0.2);
 	width:250px;
 	justify-self: center;
 	margin-top:20px;
 
-  /*height: 48px;*/
-  /*font: 32px/48px 'Noto Sans', sans-serif;*/
+
   background: rgba(14, 200, 121,0.1);
   color: #0AD5C1;
   border:none;
@@ -23,20 +21,54 @@
 
 @media only screen and (max-width:500px) {
 	#input-phone{
+		position: fixed;
+    z-index:2;
+		top:40vh;
+		left:0;
+		right:0;
+		margin-left:auto;
+		margin-right:auto;
 		width:70vw;
-		position:fixed;
-		top:35vh;
-		right: 0;
-    	left: 0;
-    	margin-right: auto;
-    	margin-left: auto;
+		margin-top:0px;
 		background:rgba(255, 255, 102,0.2);
-  		border-bottom: 1px solid rgba(14, 200, 121,1) ;
-  		box-shadow: 0 0 0.5em 0.15em rgba(255, 255, 102,1);
+  		border-bottom: 2px solid rgba(14, 200, 121,0.2) ;
+  	
+  		box-shadow: 0px 0px 10px 3px rgba(255, 255, 102,1);			
 		color: white;
 
 	}
 
+  .animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+
+  .rollIn {
+    -webkit-animation-name: rollIn;
+    animation-name: rollIn;
+  }
+
+
+
+  @keyframes rollIn {
+    0% {
+      top:-10vh;
+      transform: scale(0);
+    }
+
+    100% {
+      top:40vh;
+      transform: scale(1);
+    }
+  }
+
 }
+
+
+
+
+
 
 

@@ -10,6 +10,15 @@
   font-family: Arial;
 }
 
+.messageSource {
+  font-size: 11px;
+  position:absolute;
+  left:5px;
+  top:-16px;
+  color: rgba(255, 255, 255,0.5);
+  font-family: Arial; 
+}
+
 
 .bubble {
   width: 240px;
@@ -19,7 +28,7 @@
   font: 16px/20px 'Noto Sans', sans-serif;
   border-radius: 10px;
   background-color: rgba(0, 51, 0,0.5);
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 }
 
 .bubble p{
@@ -162,6 +171,9 @@
   }
   .timestamp {
     color: rgba(255, 255, 255,1);
+  }
+  .messageSource {
+    color: rgba(0, 0, 0,0.7);
   }
 }
 

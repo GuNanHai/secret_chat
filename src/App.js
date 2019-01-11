@@ -25,7 +25,7 @@ class App extends Component{
 			chatText:[],	//用于存储本地消息条目
 			isChatZoneMouseEnter:false,
 			isChatZoneTouched:false,
-			hasPopInput:false,
+			
 			isStartSendingMessage:false
 		}
 	}
@@ -143,25 +143,18 @@ class App extends Component{
 			this.setState({chatText:temp});
 		}		
 	}
-// ============弹出形式的输入框的开关动作
-	togglePopInput=(event)=>{
-		this.setState({hasPopInput:true});
-	}
-	dismissInput=(event)=>{
-		if(this.state.hasPopInput){
-			this.setState({hasPopInput:false});
-		}
-	}
+
 
 
 	render(){
 		const {chatText,isChatZoneMouseEnter,} = this.state;
 		return (
 			<div>
-				<div className='chatWindow' onClick={this.dismissInput}>	
+				<div className='chatWindow' 
+	      			onClick={this.dismissInput}>	
 					<ChatZone isChatZoneMouseEnter={isChatZoneMouseEnter}
 					 toggleMouseEnterJudge={this.toggleMouseEnterJudge} 
-					 toggleTouchMoveJudge={this.toggleTouchMoveJudge}>
+					 toggleTouchMoveJudge={this.toggleTouchMoveJudge} >
 						<GenerateChatBubble chatText={chatText} />
 					</ChatZone>
 					
@@ -170,9 +163,7 @@ class App extends Component{
 					</MediaQuery>
 				</div>
 				<MediaQuery query="(max-width: 500px)">
-	      			<PopInput togglePopInput={this.togglePopInput} 
-	      			hasPopInput={this.state.hasPopInput} 
-	      			getUserInput={this.getUserInput} />
+	      			<PopInput getUserInput={this.getUserInput}/>
 				</MediaQuery>				
 			</div>
 

@@ -3,12 +3,12 @@ import './SpeechBubble.css';
 
 
 
-const SpeechBubbleShe = ({chatItem,id,elementHeight,datetime}) => {
+const SpeechBubbleShe = ({chatItem,id,elementHeight,datetime,ipAddress}) => {
 	return (
 		  <div className='bubble even'
 		  id={`chatItem${id}`} 
 		  style={{height:elementHeight+'px'}}>
-		  	<p>{chatItem}<span className="timestamp">{datetime}</span></p>
+		  	<p><span className="messageSource">来自：{ipAddress}</span>{chatItem}<span className="timestamp">{datetime}</span></p>
 		  </div>	
 		);
 }

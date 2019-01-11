@@ -1,26 +1,49 @@
 
 .boy-logo {
   animation: boy-logo-spin infinite 2s linear;
-  width: 150vmin;
+  width: 60px;
   display: block;
+  
+}
+
+.popInfoAchieved {
   position:fixed;
-  top:25vh;
-  left:10vw;
-  
-  margin-right: auto;
-  margin-left: auto;
-  
-}
+  display:grid;
+  grid-template-rows: 20% 7%;
+  justify-items: end;
+  top:1vh;
+  width:100%;
+  height:700px;
+  background: rgba(255,255,255,0);
 
+}
+.popInfoAchievedPlaceHolder {
+  display: block;
+  width:267px;
+  height:130px;
+  margin-right:-110px;
+  margin-top:160px;
+  transform: scale(1);
+  background: rgba(0,0,0,0);
+}
+.popInfoAchievedPlaceHolderInit {
+  display:none;
+}
 .popInfo {
-  position:relative;
+  position:fixed;
+  display:grid;
+  grid-template-rows: 20% 7%;
+  justify-items: end;
+  top:1vh;
+  width:100%;
+  height:700px;
+  background: rgba(255,255,255,0);
 }
 
-@media screen and (max-width: 325px){
+
 .popInfo:before {
-  position:absolute;
-  top:-580px;
-  left:-15px;
+  margin-right:-110px;
+  margin-top:160px;
   transform: scale(0);
   animation-name: popinfo;
   animation-duration:6s;
@@ -28,64 +51,29 @@
   content:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='267px' height='130px' viewBox='8 88 402 196' preserveAspectRatio='xMidYMid meet' %3E%3Crect id='svgEditorBackground' x='0' y='0' width='1070' height='620' style='fill:none; stroke: none;'/%3E%3Cdefs id='svgEditorDefs'%3E%3Cpath id='svgEditorClosePathDefs' style='stroke:black;stroke-width:1px;fill:khaki;'/%3E%3C/defs%3E%3Cellipse id='e10_ellipse' cx='215' cy='185' style='fill:%23ff99cc;stroke:%23ff99cc;stroke-width:1px;' rx='187' ry='83'/%3E%3Cpolygon style='fill:%23ff99cc; stroke-width: 1px;stroke:%23FF99CC;' id='e11_polygon' points='311 247 406 280 358 234'/%3E%3Ctext style='fill:yellow;font-family:Arial;font-size:32px;' x='38' y='194' id='e12_texte'%3E点击我会唤出输入框哦！%3C/text%3E%3C/svg%3E");
 }
 
-  @keyframes popinfo {
-    0% {
-      top:-495px;
-      left:130px;
-      transform: scale(0);
-    }
-    20% {
-      top:-580px;
-      left:-15px;
-      transform: scale(1); 
-    }
-    80% {
-      top:-580px;
-      left:-15px;
-      transform: scale(1);
-    }
-    100% {
-      top:-495px;
-      left:130px;
-      transform: scale(0);
-    }
+@keyframes popinfo {
+  0% {
+  margin-right:-110px;
+  margin-top:160px;
+  transform: scale(0);
+  }
+  20% {
+  margin-right:55px;
+  margin-top:20px;
+  transform: scale(1);
+  }
+  80% {
+  margin-right:55px;
+  margin-top:20px;
+  transform: scale(1);
+  }
+  100% {
+  margin-right:-110px;
+  margin-top:160px;
+  transform: scale(0);
   }
 }
-@media screen and (min-width: 325px){
-  .popInfo:before {
-    position:absolute;
-    top:-470px;
-    left:180px;
-    transform: scale(0);
-    animation-name: popinfo;
-    animation-duration:6s;
-    animation-delay: 3s;
-    content:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='267px' height='130px' viewBox='8 88 402 196' preserveAspectRatio='xMidYMid meet' %3E%3Crect id='svgEditorBackground' x='0' y='0' width='1070' height='620' style='fill:none; stroke: none;'/%3E%3Cdefs id='svgEditorDefs'%3E%3Cpath id='svgEditorClosePathDefs' style='stroke:black;stroke-width:1px;fill:khaki;'/%3E%3C/defs%3E%3Cellipse id='e10_ellipse' cx='215' cy='185' style='fill:%23ff99cc;stroke:%23ff99cc;stroke-width:1px;' rx='187' ry='83'/%3E%3Cpolygon style='fill:%23ff99cc; stroke-width: 1px;stroke:%23FF99CC;' id='e11_polygon' points='311 247 406 280 358 234'/%3E%3Ctext style='fill:yellow;font-family:Arial;font-size:32px;' x='38' y='194' id='e12_texte'%3E点击我会唤出输入框哦！%3C/text%3E%3C/svg%3E");
-  }
 
-  @keyframes popinfo {
-    0% {
-    top:-470px;
-    left:180px;
-    transform: scale(0);
-    }
-    20% {
-      transform: scale(1);
-      top:-550px;
-      left:30px;    
-    }
-    80% {
-      transform: scale(1);
-      top:-550px;
-      left:30px; 
-    }
-    100% {
-    top:-470px;
-    left:180px;
-    transform: scale(0);
-    }
-  }
-}
 
 
 @keyframes boy-logo-spin {
@@ -98,4 +86,34 @@
   100% {
   	transform: scale(1);
   }
+}
+
+
+
+.frameForOnClickEvent {
+  position:fixed;
+  z-index:1;
+  top:0;
+  width:100%;
+  height:100%;
+  background: rgba(255,255,255,0);  
+}
+
+
+
+.animeChatInput-enter {
+opacity: 0.01;
+}
+
+.animeChatInput-enter.animeChatInput-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.animeChatInput-leave {
+  opacity: 1;
+}
+
+.animeChatInput-leave.animeChatInput-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }
