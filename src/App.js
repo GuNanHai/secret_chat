@@ -34,6 +34,7 @@ class App extends Component{
 		this.interval = setInterval(()=>{
 			if(!this.state.isStartSendingMessage){ //用isStartSendingMessage判断来避免‘请求更新’动作在没有装载‘发送动作’的内容时就紧跟着这个发送动作发出，导致服务器回复了相同内容两遍（异常的一遍是服务器以为本地缺失这条消息）。
 				let localText = this.state.chatText;//然而还是无法完全避免‘请求更新’与‘发送消息’产生的冲突。
+				let localTextLength = localText.length;
 				let data = {
 					localText:localText
 				}
@@ -55,7 +56,11 @@ class App extends Component{
 						})
 						return undefined;
 					})
-							this.setState({chatText:localText});
+							if(localTextLength===localText.length){
+								return ;
+							}else{
+								this.setState({chatText:localText});
+							}				
 					})
 				.catch(err=>console.log(err));
 			}
@@ -150,7 +155,6 @@ class App extends Component{
 
 	render(){
 		const {chatText,isChatZoneMouseEnter,} = this.state;
-
 		return (
 			<div>
 				<div className='chatWindow' onClick={this.dismissInput}>	
@@ -172,6 +176,7 @@ class App extends Component{
 			</div>
 
 			);
+
 	}
 } 
 

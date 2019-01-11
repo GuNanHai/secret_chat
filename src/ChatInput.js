@@ -6,7 +6,6 @@ const ChatInput = ({getUserInput}) => {
 
 			<input id="input-phone" 
 			type='text'  
-			ng-model="phoneVal" 
 			onKeyPress={getUserInput}
 			autoComplete='off'/>
 
