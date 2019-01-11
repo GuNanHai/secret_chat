@@ -138,7 +138,7 @@ class App extends Component{
 	//=======限制本地消息条数不超出150条===============================
 
 	deleteChatItemWhenOverFlow(){
-		if(this.state.chatText.length>150){
+		if(this.state.chatText.length>20){
 			let temp = this.state.chatText;
 			temp.shift();
 			this.setState({chatText:temp});
