@@ -60,11 +60,12 @@ class App extends Component{
 								return ;
 							}else{
 								this.setState({chatText:localText});
+								this.chatZoneBarToBottom();
 							}				
 					})
 				.catch(err=>console.log(err));
 			}
-			this.chatZoneBarToBottom();
+			
 		}, 1000);
 	}
 	componentDidUpdate(){
