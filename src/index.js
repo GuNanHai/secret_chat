@@ -4,7 +4,9 @@ import * as serviceWorker from './serviceWorker';
 
 import './index.css';
 import App from './App';
-import ParticlesBG from './components/ParticlesBG/ParticlesBG';
+
+// 此动态背景模块由于会时时Render因此被禁用
+// import ParticlesBG from './components/ParticlesBG/ParticlesBG';
 
 
 
