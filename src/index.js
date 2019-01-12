@@ -11,7 +11,7 @@ import ParticlesBG from './components/ParticlesBG/ParticlesBG';
 
 ReactDOM.render(
 	<div>
-		<ParticlesBG />
+		{/*<ParticlesBG />*/}
 		<App />
 	</div>
 	, document.getElementById('root'));

@@ -34,7 +34,7 @@ class App extends Component{
 		//================================用setInterval()设定每隔一秒钟向服务器发送一次请求更新消息的request(附带本地消息存储状态chatText，用于判断更新客户端没有的新消息。)
 		this.interval = setInterval(()=>{
 			if(!this.state.isStartSendingMessage){ //用isStartSendingMessage判断来避免‘请求更新’动作在没有装载‘发送动作’的内容时就紧跟着这个发送动作发出，导致服务器回复了相同内容两遍（异常的一遍是服务器以为本地缺失这条消息）。
-				let localText = this.state.chatText;//然而还是无法完全避免‘请求更新’与‘发送消息’产生的冲突。
+				let localText = [...this.state.chatText];//然而还是无法完全避免‘请求更新’与‘发送消息’产生的冲突。
 				let localTextLength = localText.length;
 				let data = {
 					localText:localText
@@ -58,7 +58,7 @@ class App extends Component{
 						return undefined;
 					})
 							if(localTextLength===localText.length){
-								return ;
+								return null;
 							}else{
 								this.setState({chatText:localText});
 								this.chatZoneBarToBottom();
@@ -83,7 +83,7 @@ class App extends Component{
 			this.setState({isStartSendingMessage:true}); //判断用户处于发送消息状态，此时禁止接受消息。
 			let date = new Date();
 			let datetime = `${date.getFullYear()}年${date.getMonth()+1}月${date.getDate()}日 ${date.getHours()}:${date.getMinutes()>9?date.getMinutes():'0'+date.getMinutes()}`
-			let temp = this.state.chatText;
+			let temp = [...this.state.chatText];
 			let chatText = {
 				text:event.target.value,
 				datetime:datetime
