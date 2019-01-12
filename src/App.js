@@ -30,6 +30,18 @@ class App extends Component{
 			isStartSendingMessage:false
 		}
 	}
+	shouldComponentUpdate(nextProps,nextState){
+		if(this.state.isChatZoneMouseEnter !== nextState.isChatZoneMouseEnter){
+			return true;
+		}
+		if(this.state.isChatZoneTouched !== nextState.isChatZoneTouched){
+			return true;
+		}
+		if(this.state.isStartSendingMessage !== nextState.isStartSendingMessage){
+			return true;
+		}
+		return false;
+	}
 	componentDidMount(){
 		//================================用setInterval()设定每隔一秒钟向服务器发送一次请求更新消息的request(附带本地消息存储状态chatText，用于判断更新客户端没有的新消息。)
 		this.interval = setInterval(()=>{
@@ -149,6 +161,7 @@ class App extends Component{
 
 
 	render(){
+		console.log('App更新');
 		const {chatText,isChatZoneMouseEnter,} = this.state;
 		return (
 			<div>

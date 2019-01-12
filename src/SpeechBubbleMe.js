@@ -3,6 +3,7 @@ import './SpeechBubble.css';
 
 
 const SpeechBubbleMe = ({chatItem,id,elementHeight,datetime,ipAddress}) => {
+	console.log('SpeechBubbleMe更新');
 	return (
 		  <div className='bubble odd'
 		  id={`chatItem${id}`} 

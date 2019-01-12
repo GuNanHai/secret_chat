@@ -11,6 +11,15 @@ class EmojiSummonButton extends React.Component{
 			emojiCalled:false
 		}
 	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+
+		if (this.state.emojiCalled !== nextState.emojiCalled) {
+
+		  return true;
+		}
+		return false;
+	}	
 	turnOnEmoji = (event) => {
 		this.setState({emojiCalled:true});
 	}
@@ -24,6 +33,7 @@ class EmojiSummonButton extends React.Component{
 		this.setState({emojiCalled:false});
 	}
 	render(){
+		console.log('EmojiSummonButton更新');
 		if(this.state.emojiCalled){
 			return (
 					<div className="EmojiSummon">

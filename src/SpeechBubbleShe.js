@@ -4,6 +4,7 @@ import './SpeechBubble.css';
 
 
 const SpeechBubbleShe = ({chatItem,id,elementHeight,datetime,ipAddress}) => {
+	console.log('SpeechBubbleShe更新');
 	return (
 		  <div className='bubble even'
 		  id={`chatItem${id}`} 
