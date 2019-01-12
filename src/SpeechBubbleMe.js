@@ -4,7 +4,7 @@ import './SpeechBubble.css';
 let bubbleStyle = '';
 
 const SpeechBubbleMe = ({address,chatItem,id,elementHeight,datetime,ipAddress}) => {
-	console.log('SpeechBubbleMe更新');
+	// console.log('SpeechBubbleMe更新');
 
 	if(address === 'local'){
 		bubbleStyle = 'odd';

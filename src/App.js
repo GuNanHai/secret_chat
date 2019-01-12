@@ -131,7 +131,7 @@ class App extends Component{
 
 
 	render(){
-		console.log('App更新');
+		// console.log('App更新');
 		return (
 			<div>
 				<div className='chatWindow' 

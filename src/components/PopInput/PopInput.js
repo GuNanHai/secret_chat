@@ -32,7 +32,7 @@ class PopInput extends React.Component{
 	}
 
 	render(){
-		console.log('PopInput更新');
+		// console.log('PopInput更新');
 		if(this.state.hasPopInput){
 			return (
 				    <div>

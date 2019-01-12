@@ -12,7 +12,7 @@ class ChatInput extends React.Component{
 		return false;
 	}	
 	render(){
-		console.log('ChatInput更新');
+		// console.log('ChatInput更新');
 		return (
 
 					<input id="input-phone" 

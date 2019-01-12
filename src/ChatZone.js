@@ -24,9 +24,6 @@ class ChatZone extends React.Component{
 		if(this.props.isStartSendingMessage !== nextProps.isStartSendingMessage){
 			return true;
 		}
-		if(this.props.isGettingNewMessage !== nextProps.isGettingNewMessage){
-			return true;
-		}
 		if(this.props.chatText !== nextProps.chatText){
 			return true;
 		}
@@ -37,15 +34,15 @@ class ChatZone extends React.Component{
 		if(this.props.isStartSendingMessage===true){
 				this.setState({isChatZoneTouched:false})
 		}
-		if(this.props.isGettingNewMessage===true){
-			this.chatZoneBarToBottom();
-		}
 	}
 	// 聊天窗口是否活动的相关Function================================
 	
 
-	toggleMouseEnterJudge=(event)=>{
-		this.state.isChatZoneMouseEnter?this.setState({isChatZoneMouseEnter:false}):this.setState({isChatZoneMouseEnter:true});
+	toggleMouseEnterJudgeOn=(event)=>{
+		this.setState({isChatZoneMouseEnter:true});
+	}
+	toggleMouseEnterJudgeOff=(event)=>{
+		this.setState({isChatZoneMouseEnter:false});
 	}
 	toggleTouchMoveJudge=(event)=>{
 		if(delayOffChatZoneTouched){
@@ -57,6 +54,7 @@ class ChatZone extends React.Component{
 
 	// 使聊天窗口在每次更新后始终处于最底部，当鼠标进入chatZone时不会执行此功能,手机环境时当手指滑动聊天区域后停止执行此功能，若手指不再滑动10秒后重启此功能。
 	chatZoneBarToBottom = () => {
+		
 
 		if(!this.state.isChatZoneMouseEnter && !this.state.isChatZoneTouched){
 			$('#ChatZone').scrollTop($('#ChatZone')[0].scrollHeight);
@@ -66,13 +64,12 @@ class ChatZone extends React.Component{
 
 
 	render(){
-	console.log('ChatZone更新');
-
+	// console.log('ChatZone更新');
 	return (
 				<div className={this.state.isChatZoneMouseEnter?`scrollBarV`:`scrollBarHide`}
 				 id="ChatZone" 
-				 onMouseEnter={this.toggleMouseEnterJudge} 
-				 onMouseLeave={this.toggleMouseEnterJudge} 
+				 onMouseEnter={this.toggleMouseEnterJudgeOn} 
+				 onMouseLeave={this.toggleMouseEnterJudgeOff} 
 				 onTouchMove={this.toggleTouchMoveJudge} >
 					<GenerateChatBubble chatText={this.props.chatText} />
 				</div>
@@ -83,18 +80,6 @@ class ChatZone extends React.Component{
 
 
 
-// const ChatZone = (props) => {
-// 	console.log('ChatZone更新');
-// 	return (
-// 				<div className={props.isChatZoneMouseEnter?`scrollBarV`:`scrollBarHide`}
-// 				 id="ChatZone" 
-// 				 onMouseEnter={props.toggleMouseEnterJudge} 
-// 				 onMouseLeave={props.toggleMouseEnterJudge} 
-// 				 onTouchMove={props.toggleTouchMoveJudge} >
-// 					{props.children}
-// 				</div>
-// 	);
-// }
 
 export default ChatZone;
 

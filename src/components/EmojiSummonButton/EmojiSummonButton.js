@@ -33,7 +33,7 @@ class EmojiSummonButton extends React.Component{
 		this.setState({emojiCalled:false});
 	}
 	render(){
-		console.log('EmojiSummonButton更新');
+		// console.log('EmojiSummonButton更新');
 		if(this.state.emojiCalled){
 			return (
 					<div className="EmojiSummon">
