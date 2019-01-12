@@ -1,6 +1,8 @@
 import React from 'react';
-import SpeechBubbleShe from './SpeechBubbleShe';
 import SpeechBubbleMe from './SpeechBubbleMe';
+
+
+
 
 
 class GenerateChatBubble extends React.Component{
@@ -16,15 +18,10 @@ class GenerateChatBubble extends React.Component{
 	}	
 
 	render(){
-			console.log('GenerateChatBubble更新');
 			if(this.props.chatText){
 				return this.props.chatText.map((item,i) => {
 					let elementHeight = 52+Math.trunc(item.message.length/14)*16;
-					if(item.address==='local'){
-						return <SpeechBubbleMe  key={`textID-${item.textID}`} id={`textID-${item.textID}`} ipAddress={item.ipAddress} chatItem={item.message}  elementHeight={elementHeight} datetime={item.datetime}/>
-					}else{
-						return <SpeechBubbleShe  key={`textID-${item.textID}`} id={`textID-${item.textID}`} ipAddress={item.ipAddress} chatItem={item.message}  elementHeight={elementHeight} datetime={item.datetime}/>
-					}
+					return <SpeechBubbleMe  address={item.address} key={`textID-${item.textID}`} id={`textID-${item.textID}`} ipAddress={item.ipAddress} chatItem={item.message}  elementHeight={elementHeight} datetime={item.datetime}/>
 					})
 			}else{
 				return null;

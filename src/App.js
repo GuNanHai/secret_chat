@@ -1,10 +1,8 @@
 import React,{Component} from 'react';
-import * as $ from 'jquery';
 import MediaQuery from 'react-responsive';
 import axios from 'axios'
 
 
-import GenerateChatBubble from './GenerateChatBubble'
 import ChatInput from './ChatInput';
 import ChatZone from './ChatZone';
 import PopInput from './components/PopInput/PopInput';
@@ -17,24 +15,17 @@ import EmojiSummonButton from './components/EmojiSummonButton/EmojiSummonButton'
 const Url='http://45.32.227.181:5000/chatText';
 const Url2='http://45.32.227.181:5000/getText';
 
-let delayOffChatZoneTouched;
 
 class App extends Component{
 	constructor(){
 		super();
 		this.state={
 			chatText:[],	//用于存储本地消息条目
-			isChatZoneMouseEnter:false,
-			isChatZoneTouched:false,
-			
-			isStartSendingMessage:false
+			isStartSendingMessage:false,
 		}
 	}
 	shouldComponentUpdate(nextProps,nextState){
-		if(this.state.isChatZoneMouseEnter !== nextState.isChatZoneMouseEnter){
-			return true;
-		}
-		if(this.state.isChatZoneTouched !== nextState.isChatZoneTouched){
+		if(this.state.chatText !== nextState.chatText){
 			return true;
 		}
 		if(this.state.isStartSendingMessage !== nextState.isStartSendingMessage){
@@ -73,7 +64,6 @@ class App extends Component{
 								return null;
 							}else{
 								this.setState({chatText:localText});
-								this.chatZoneBarToBottom();
 							}				
 					})
 				.catch(err=>console.log(err));
@@ -82,7 +72,6 @@ class App extends Component{
 		}, 1000);
 	}
 	componentDidUpdate(){
-		this.chatZoneBarToBottom();
 		this.deleteChatItemWhenOverFlow();
 	}
 	// ==================================================================================================
@@ -124,29 +113,10 @@ class App extends Component{
 
 			
 			event.target.value='';
-			this.setState({isChatZoneTouched:false})
 		}
 	}
 
-	// 聊天窗口是否活动的相关Function================================
-	toggleMouseEnterJudge=(event)=>{
-		this.state.isChatZoneMouseEnter?this.setState({isChatZoneMouseEnter:false}):this.setState({isChatZoneMouseEnter:true});
-	}
-	toggleTouchMoveJudge=(event)=>{
-		if(delayOffChatZoneTouched){
-			clearTimeout(delayOffChatZoneTouched);
-		}
-		this.setState({isChatZoneTouched:true});
-		delayOffChatZoneTouched = setTimeout(()=>this.setState({isChatZoneTouched:false}),5000);
-	}
 
-	// 使聊天窗口在每次更新后始终处于最底部，当鼠标进入chatZone时不会执行此功能,手机环境时当手指滑动聊天区域后停止执行此功能，若手指不再滑动10秒后重启此功能。
-	chatZoneBarToBottom = () => {
-
-		if(!this.state.isChatZoneMouseEnter && !this.state.isChatZoneTouched){
-			$('#ChatZone').scrollTop($('#ChatZone')[0].scrollHeight);
-		}
-	}
 	//=======限制本地消息条数不超出150条===============================
 
 	deleteChatItemWhenOverFlow(){
@@ -162,17 +132,12 @@ class App extends Component{
 
 	render(){
 		console.log('App更新');
-		const {chatText,isChatZoneMouseEnter,} = this.state;
 		return (
 			<div>
 				<div className='chatWindow' 
 	      			onClick={this.dismissInput}>	
-					<ChatZone isChatZoneMouseEnter={isChatZoneMouseEnter}
-					 toggleMouseEnterJudge={this.toggleMouseEnterJudge} 
-					 toggleTouchMoveJudge={this.toggleTouchMoveJudge} >
-						<GenerateChatBubble chatText={chatText} />
-					</ChatZone>
-					
+					<ChatZone isStartSendingMessage={this.state.isStartSendingMessage} 
+							  chatText={this.state.chatText}/>
 					<MediaQuery query="(min-width: 500px)">
 						<div className='inputPlusEmoji'>
 							<ChatInput getUserInput={this.getUserInput} />

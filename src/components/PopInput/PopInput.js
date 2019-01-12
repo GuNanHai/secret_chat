@@ -23,6 +23,7 @@ class PopInput extends React.Component{
 // ============弹出形式的输入框的开关动作
 	togglePopInput=(event)=>{
 		this.setState({hasPopInput:true});
+		setTimeout(()=>document.getElementById('input-phone').focus(),500);
 	}
 	dismissInput=(event)=>{
 		if(this.state.hasPopInput){
