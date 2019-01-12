@@ -135,10 +135,10 @@ class App extends Component{
 			$('#ChatZone').scrollTop($('#ChatZone')[0].scrollHeight);
 		}
 	}
-	//=======限制本地消息条数不超出25条===============================
+	//=======限制本地消息条数不超出150条===============================
 
 	deleteChatItemWhenOverFlow(){
-		if(this.state.chatText.length>30){
+		if(this.state.chatText.length>150){
 			let temp = this.state.chatText;
 			temp.shift();
 			this.setState({chatText:temp});
