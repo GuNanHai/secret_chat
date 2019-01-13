@@ -6,14 +6,14 @@ import './index.css';
 import App from './App';
 
 // 此动态背景模块由于会时时Render因此被禁用
-import ParticlesBG from './components/ParticlesBG/ParticlesBG';
+// import ParticlesBG from './components/ParticlesBG/ParticlesBG';
 
 
 
 
 ReactDOM.render(
 	<div>
-		<ParticlesBG />
+		{/*<ParticlesBG />*/}
 		<App />
 	</div>
 	, document.getElementById('root'));
