@@ -12,8 +12,8 @@ import EmojiSummonButton from './components/EmojiSummonButton/EmojiSummonButton'
 
 
 
-const Url='http://45.32.227.181:5000/chatText';
-const Url2='http://45.32.227.181:5000/getText';
+const Url='http://45.32.99.213:5000/chatText';
+const Url2='http://45.32.99.213:5000/getText';
 
 
 class App extends Component{
