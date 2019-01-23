@@ -1,42 +1,39 @@
+#chatInput {
+  display: block;
+  padding: 0.5em 0.25em;
 
-
-
-#input-phone{
-	display: block;
-	padding: 0.5em 0.25em;
-
-	font-size: 1.5em;
-	box-shadow: 0 0 0.5em 0.15em rgba(0,0,0,0.2);
-	width:250px;
-	
-
-
-  background: rgba(14, 200, 121,0.1);
-  color: #0AD5C1;
-  border:none;
-  border-bottom: 1px solid #0EC879;
+  font-size: 1.5em;
+  box-shadow: 0 0 0.5em 0.15em rgba(0, 0, 0, 0.2);
+  width: 70%;
+  height: 70%;
+  background: rgba(14, 200, 121, 0.1);
+  color: #0ad5c1;
+  border: none;
+  border-radius: 15px;
+}
+#chatInput:focus {
   outline: none;
 }
 
-@media only screen and (max-width:500px) {
-	#input-phone{
+@media only screen and (max-width: 500px) {
+  #chatInput {
     display: block;
-		position: fixed;
-    z-index:2;
-		top:40vh;
-		left:0;
-		right:0;
-		margin-left:auto;
-		margin-right:auto;
-		width:70vw;
-		margin-top:0px;
-		background:rgba(255, 255, 102,0.2);
-  	border-bottom: 2px solid rgba(14, 200, 121,0.2) ;
-  	
-  	box-shadow: 0px 0px 10px 3px rgba(255, 255, 102,1);			
-		color: white;
+    position: fixed;
+    z-index: 2;
+    top: 40vh;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70vw;
+    height: 57px;
+    margin-top: 0px;
+    background: rgba(255, 255, 102, 0.2);
+    border-bottom: 2px solid rgba(14, 200, 121, 0.2);
 
-	}
+    box-shadow: 0px 0px 10px 3px rgba(255, 255, 102, 1);
+    color: white;
+  }
 
   .animated {
     -webkit-animation-duration: 1s;
@@ -50,25 +47,15 @@
     animation-name: rollIn;
   }
 
-
-
   @keyframes rollIn {
     0% {
-      top:-10vh;
+      top: -10vh;
       transform: scale(0);
     }
 
     100% {
-      top:40vh;
+      top: 40vh;
       transform: scale(1);
     }
   }
-
 }
-
-
-
-
-
-
-

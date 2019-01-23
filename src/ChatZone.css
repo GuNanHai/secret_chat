@@ -1,59 +1,53 @@
-.scrollBarHide,.scrollBarV {
-	height: 80vh;
-	width: 600px;
-	overflow-y: scroll;
-	overflow-x: hidden;
-
+#ChatZone {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px 15px 0 0;
 }
 
-@media only screen and (max-width:415px) {
-	.scrollBarHide,.scrollBarV{
-		width:100vw;
-		height: 600px;
-		margin-top:0px;
-	}
+.scrollBarHide,
+.scrollBarV {
+  height: 80vh;
+  width: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
+@media only screen and (max-width: 415px) {
+  .scrollBarHide,
+  .scrollBarV {
+    width: 100vw;
+    height: 100vh;
+    margin-top: 0px;
+  }
+  #ChatZone {
+    background: none;
+  }
+}
 
-
-
-.scrollBarHide::-webkit-scrollbar
-,.scrollBarV::-webkit-scrollbar {
+.scrollBarHide::-webkit-scrollbar,
+.scrollBarV::-webkit-scrollbar {
   width: 5px;
 }
 
-
-.scrollBarHide::-webkit-scrollbar-track
-,.scrollBarV::-webkit-scrollbar-track {
-	opacity:0;
+.scrollBarHide::-webkit-scrollbar-track,
+.scrollBarV::-webkit-scrollbar-track {
+  opacity: 0;
 }
 
 .scrollBarHide::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  
-
 }
 
-
-
-.scrollBarHide::-webkit-scrollbar-track-piece
-,.scrollBarV::-webkit-scrollbar-track-piece {
-	opacity:0;
+.scrollBarHide::-webkit-scrollbar-track-piece,
+.scrollBarV::-webkit-scrollbar-track-piece {
+  opacity: 0;
 }
 
-.scrollBarHide::-webkit-scrollbar-corner
-,.scrollBarV::-webkit-scrollbar-corner{
-	opacity: 0;
+.scrollBarHide::-webkit-scrollbar-corner,
+.scrollBarV::-webkit-scrollbar-corner {
+  opacity: 0;
 }
-
 
 .scrollBarV::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: rgba(0, 0, 0,0.2); 
-
+  background: rgba(0, 0, 0, 0.2);
 }
-
-
-
-
-

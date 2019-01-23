@@ -1,16 +1,22 @@
-
-
 .chatWindow {
-	display:grid;
-	justify-content: center;
-	position:relative;
-	
-
+  display: grid;
+  justify-content: center;
+  position: relative;
 }
 
 .inputPlusEmoji {
-	display: flex;
-	justify-content: center;
-	height:53px;
+  display: flex;
+  justify-content: center;
 
+  height: 80px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 0 0 15px 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width: 500px) {
+  .inputPlusEmoji {
+    display: none;
+  }
 }
