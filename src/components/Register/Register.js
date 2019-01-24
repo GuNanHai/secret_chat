@@ -9,11 +9,15 @@ const onInput = e => {
   e.target.setCustomValidity('');
 };
 
+const onFormSubmit = e => {
+  e.preventDefault();
+};
+
 const Register = ({ register, goLogin, loginStatus, clearWarning }) => {
   return (
     <div className="login">
       <h1>注册</h1>
-      <div id="registerForm">
+      <form onSubmit={onFormSubmit} id="registerForm">
         <input
           id="registerNickname"
           type="text"
@@ -51,14 +55,14 @@ const Register = ({ register, goLogin, loginStatus, clearWarning }) => {
             注册
           </button>
           <button
-            type="submit"
+            type="button"
             className="btn btn-primary btn-block btn-large"
             onClick={goLogin}
           >
             我有账号
           </button>
         </div>
-      </div>
+      </form>
       {loginStatus === 'userExists' ? (
         <p className="failedLogin">账户已存在@-@</p>
       ) : null}

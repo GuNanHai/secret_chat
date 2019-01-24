@@ -8,12 +8,14 @@ const onInvalid = e => {
 const onInput = e => {
   e.target.setCustomValidity('');
 };
-
+const onFormSubmit = e => {
+  e.preventDefault();
+};
 const Login = ({ loginCheck, goRegister, loginStatus }) => {
   return (
     <div className="login">
       <h1>登录</h1>
-      <div id="loginForm">
+      <form onSubmit={onFormSubmit} id="loginForm">
         <input
           id="loginUsername"
           type="text"
@@ -41,14 +43,14 @@ const Login = ({ loginCheck, goRegister, loginStatus }) => {
             登录
           </button>
           <button
-            type="submit"
+            type="button"
             className="btn btn-primary btn-block btn-large"
             onClick={goRegister}
           >
             注册
           </button>
         </div>
-      </div>
+      </form>
       {loginStatus === 'wrongUsername' ? (
         <p className="failedLogin">账号不存在!</p>
       ) : null}
