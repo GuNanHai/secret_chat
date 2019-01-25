@@ -1,5 +1,4 @@
 import React from 'react';
-import './Login.css';
 
 //一下两个function用于修改表格的校验信息
 const onInvalid = e => {
